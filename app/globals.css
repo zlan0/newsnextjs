@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ghana-red: #CF0921;
+  --ghana-gold: #FCD116;
+  --ghana-green: #006B3F;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  color: #1a1a1a;
+  background: #f8f8f8;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* Ghana flag stripe accent */
+.ghana-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--ghana-red) 33.33%, var(--ghana-gold) 33.33%, var(--ghana-gold) 66.66%, var(--ghana-green) 66.66%);
+}
+
+.ghana-stripe-thin {
+  height: 3px;
+  background: linear-gradient(90deg, var(--ghana-red) 33.33%, var(--ghana-gold) 33.33%, var(--ghana-gold) 66.66%, var(--ghana-green) 66.66%);
+}
+
+/* Breaking news ticker */
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+}
+
+.ticker-content:hover { animation-play-state: paused; }
+
+@keyframes ticker {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Article cards */
+.article-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Category badge */
+.category-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+/* Image placeholder */
+.img-placeholder {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile nav */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+}
+
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+
+/* Responsive article content */
+.article-content {
+  font-size: clamp(16px, 2.5vw, 18px);
+  line-height: 1.8;
+  color: #222;
+}
+
+.article-content p {
+  margin-bottom: 1.25em;
+}
+
+/* Admin specific */
+.admin-sidebar {
+  width: 240px;
+  min-width: 240px;
+}
+
+@media (max-width: 1024px) {
+  .admin-sidebar { display: none; }
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--ghana-red); border-radius: 3px; }
+
+/* Print */
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--ghana-red);
+  outline-offset: 2px;
+}
+
+/* Pagination */
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.pagination-btn:hover, .pagination-btn.active {
+  background: var(--ghana-red);
+  color: white;
+  border-color: var(--ghana-red);
+}

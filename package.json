@@ -1,0 +1,35 @@
+{
+  "name": "ghanafront",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "node lib/db-init.js"
+  },
+  "dependencies": {
+    "next": "15.1.9",
+    "react": "^19.0.3",
+    "react-dom": "^19.0.3",
+    "@libsql/client": "^0.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "rss-parser": "^3.13.0",
+    "next-auth": "^4.24.7",
+    "bcryptjs": "^2.4.3",
+    "slugify": "^1.6.6",
+    "date-fns": "^3.6.0",
+    "sharp": "^0.33.4"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/bcryptjs": "^2.4.6",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}

@@ -1,0 +1,36 @@
+name: News Scraper Cron
+
+on:
+  schedule:
+    # Runs every 2 hours - GitHub Actions is FREE (2000 min/month on free tier)
+    # Each run takes ~30 seconds, so 12 runs/day × 0.5min = 6 min/day = ~180 min/month
+    - cron: '0 */2 * * *'
+  
+  # Also allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+      - name: Trigger RSS Fetch
+        run: |
+          echo "Triggering RSS fetch at $(date)"
+          curl -s -X GET \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/rss" \
+            --max-time 30 \
+            | head -c 500
+          echo ""
+
+      - name: Trigger Web Scrape
+        run: |
+          echo "Triggering web scrape at $(date)"
+          curl -s -X GET \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.SITE_URL }}/api/cron/scrape" \
+            --max-time 30 \
+            | head -c 500
+          echo ""
